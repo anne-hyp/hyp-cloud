@@ -1,0 +1,56 @@
+package cn.hehe.cloud.common.entity;
+
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+
+import java.io.Serializable;
+import java.util.Collection;
+import java.util.Date;
+
+/**
+ * @author hyp
+ * @title: AuthUser
+ * @projectName hyp-cloud
+ * @description: 自定义用户实体类
+ * @date 2022/6/17 17:08
+ */
+@Data
+@EqualsAndHashCode(callSuper = true)
+public class AuthUser extends User {
+    private static final long serialVersionUID = -1748289340320186418L;
+
+    private Long userId;
+
+    private String avatar;
+
+    private String email;
+
+    private String mobile;
+
+    private String sex;
+
+    private Long deptId;
+
+    private String deptName;
+
+    private String roleId;
+
+    private String roleName;
+
+    private Date lastLoginTime;
+
+    private String description;
+
+    private String status;
+
+    public AuthUser(String username, String password, Collection<? extends GrantedAuthority> authorities) {
+        super(username, password, authorities);
+    }
+
+    public AuthUser(String username, String password, boolean enabled, boolean accountNonExpired, boolean credentialsNonExpired, boolean accountNonLocked, Collection<? extends GrantedAuthority> authorities) {
+        super(username, password, enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
+    }
+
+}

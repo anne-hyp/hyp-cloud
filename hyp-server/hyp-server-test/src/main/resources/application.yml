@@ -1,0 +1,31 @@
+server:
+  port: 8202
+
+spring:
+  application:
+    name: hyp-server-test
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration,com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DynamicDataSourceAutoConfiguration,org.springframework.boot.autoconfigure.data.redis.RedisAutoConfiguration
+
+eureka:
+  instance:
+    lease-renewal-interval-in-seconds: 20
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    instance-info-replication-interval-seconds: 30
+    registry-fetch-interval-seconds: 3
+    serviceUrl:
+      defaultZone: http://hyp:123456@localhost:8001/register/eureka/
+security:
+  oauth2:
+    resource:
+      id: ${spring.application.name}
+      user-info-uri: http://localhost:8301/auth/user
+feign:
+  hystrix:
+    #开启Feign的回退功能
+    enabled: true
+hystrix:
+  #配置把SecurityContext对象从你当前主线程传输到Hystrix线程
+  shareSecurityContext: true
